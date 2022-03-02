@@ -1,10 +1,11 @@
 import React from "react";
+import { Data } from "../molecules/Data";
 import { MainLayout } from "../templates/MainLayout";
 
 export const Home = () => {
   return (
     <MainLayout>
-      <h1>Mountain-App TopPage</h1>
+      <Data />
     </MainLayout>
   );
 };
