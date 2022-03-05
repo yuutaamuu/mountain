@@ -12,13 +12,14 @@ type UseCount = {
 };
 
 export const useWeatherData = () => {
+  const apiKey = process.env.REACT_APP_API_KEY;
   const [weatherData, setWeatherData] = useState<WEATHER | undefined>();
 
   const getWeatherData = useCallback(
     (lat: number | undefined, lon: number | undefined) => {
       axios
         .get<WEATHER>(
-          `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=cedaf278815319b7a32b51d05b37239f`
+          `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
         )
         .then((res) => {
           console.log(res.data);
