@@ -16,9 +16,18 @@ export const HourlyWeather: VFC<PROPS> = memo((props) => {
     return roundDegree;
   }, []);
 
+  const getHour = useCallback((num: number) => {
+    let dateHourly = new Date(num * 1000);
+    let h = dateHourly.getHours();
+    let m = dateHourly.getMinutes();
+    let day = `${h}:0${m}`;
+    return day;
+  }, []);
+
   return (
     <>
-      <li className="w-40 px-4 flex flex-col border-r">
+      <li className="w-40 px-4 flex flex-col border-r items-center">
+        <p className="h-6">{getHour(hour.dt)}</p>
         <img
           className="w-8 h-8"
           src={
@@ -26,7 +35,8 @@ export const HourlyWeather: VFC<PROPS> = memo((props) => {
           }
           alt=""
         />
-        <p className="w-full block text-center">{getRound(hour.temp)}</p>
+        <p className="h-6">{getRound(hour.temp)}</p>
+        <p className="h-6">{getRound(hour.wind_speed)}</p>
       </li>
     </>
   );

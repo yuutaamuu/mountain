@@ -70,13 +70,34 @@ export const Modal: VFC<PROP> = memo((props) => {
               </button>
             </div>
 
-            <div className="p-6 overflow-auto">
+            <div className="p-6 overflow-auto w-full">
               <h4 className="text-md font-bold mb-2">48時間予報</h4>
-              <ul className="flex overflow-auto mb-6 pb-2">
-                {weatherData?.hourly.map((hour, index) => (
-                  <HourlyWeather hour={hour} key={index} />
-                ))}
-              </ul>
+              <div className="flex mb-2">
+                <div className="w-20 pr-2 bg-white flex flex-col items-center text-center">
+                  <p className="text-sm w-8 h-6 flex justify-center items-center">
+                    時間
+                  </p>
+                  <div className="w-8 h-8"></div>
+                  <p className="text-sm w-8 h-6 flex justify-center items-center">
+                    気温
+                  </p>
+                  <p className="text-sm w-8 h-6 flex justify-center items-center">
+                    風速
+                  </p>
+                </div>
+
+                <ul className="flex overflow-auto pb-2">
+                  {weatherData?.hourly.map((hour, index) => (
+                    <HourlyWeather hour={hour} key={index} />
+                  ))}
+                </ul>
+              </div>
+              <div className="pb-2 mb-6">
+                <h5 className="text-sm font-bold">風速目安</h5>
+                <p className="text-xs">
+                  1〜10...安全　11〜20...危険　20〜...非常に危険
+                </p>
+              </div>
 
               <h4 className="text-md font-bold mb-2">週間天気予報</h4>
               <ul>
