@@ -26,16 +26,21 @@ export const HourlyWeather: VFC<PROPS> = memo((props) => {
 
   return (
     <>
-      <li className="w-40 px-4 flex flex-col border-r items-center">
+      <li className="w-40 px-3 flex flex-col border-r items-center">
         <p className="h-6">{getHour(hour.dt)}</p>
         <img
           className="w-8 h-8"
           src={
-            "http://openweathermap.org/img/w/" + hour.weather[0].icon + ".png"
+            "http://openweathermap.org/img/wn/" +
+            hour.weather[0].icon +
+            "@2x.png"
           }
           alt=""
         />
-        <p className="h-6">{getRound(hour.temp)}</p>
+        <p className="h-6">
+          {getRound(hour.temp)}
+          <span className="text-sm">℃</span>
+        </p>
         <p className="h-6">{getRound(hour.wind_speed)}</p>
       </li>
     </>

@@ -3,6 +3,7 @@ import React, { memo, useCallback, useEffect, useState } from "react";
 import { useModalData } from "../../hooks/useModalData";
 import { Card } from "./Card";
 import { Modal } from "./Modal";
+import { Search } from "./Search";
 
 type MOUNTAIN = {
   id: number;
@@ -27,6 +28,7 @@ export const Data = memo(() => {
   const [mountains, setMountains] = useState<MOUNTAIN[]>([]);
   const [open, setOpen] = useState(false);
   const [id, setId] = useState(0);
+  const [input, setInput] = useState("");
   const { singleMountain, getMountainData } = useModalData(0);
 
   const getMountainDatas = useCallback(async () => {
@@ -36,14 +38,23 @@ export const Data = memo(() => {
       .catch((err) => console.log(err));
   }, []);
 
-  const onClickGetSingleData = (id: number) => {
+  const onClickGetSingleData = useCallback((id: number) => {
     getMountainData(id);
     setOpen(!open);
-  };
+  }, []);
 
-  const onClickCloseModal = () => {
+  const onClickCloseModal = useCallback(() => {
     setOpen(!open);
-  };
+  }, []);
+
+  const onChangeSearch = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInput(e.target.value);
+    },
+    []
+  );
+
+  console.log(input);
 
   useEffect(() => {
     getMountainDatas();
@@ -51,6 +62,7 @@ export const Data = memo(() => {
 
   return (
     <div>
+      <Search onChangeSearch={onChangeSearch} input={input} />
       <div>
         {mountains.map((mountain) => (
           <Card

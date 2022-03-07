@@ -2,6 +2,7 @@ import React, { memo, useCallback, useEffect, useState, VFC } from "react";
 import { useWeatherData } from "../../hooks/useWeatherData";
 import { DailyWeather } from "./DailyWeather";
 import { HourlyWeather } from "./HourlyWeather";
+import { TodayWeather } from "./TodayWeather";
 
 type PROPS = {
   id: number;
@@ -70,8 +71,14 @@ export const Modal: VFC<PROP> = memo((props) => {
               </button>
             </div>
 
-            <div className="p-6 overflow-auto w-full">
-              <h4 className="text-md font-bold mb-2">48時間予報</h4>
+            <div className="px-5 py-6 overflow-auto w-full">
+              <h4 className="text-xl font-bold mb-2">現在の天気</h4>
+              <TodayWeather
+                todayTemp={weatherData?.current.temp}
+                todayIcon={weatherData?.current.weather[0].icon}
+                todayHumi={weatherData?.current.humidity}
+              />
+              <h4 className="text-xl font-bold mb-2">48時間予報</h4>
               <div className="flex mb-2">
                 <div className="w-20 pr-2 bg-white flex flex-col items-center text-center">
                   <p className="text-sm w-8 h-6 flex justify-center items-center">
@@ -92,14 +99,14 @@ export const Modal: VFC<PROP> = memo((props) => {
                   ))}
                 </ul>
               </div>
-              <div className="pb-2 mb-6">
-                <h5 className="text-sm font-bold">風速目安</h5>
-                <p className="text-xs">
+              <div className="pb-2 mb-12">
+                <h5 className="text-md font-bold">風速目安</h5>
+                <p className="text-sm">
                   1〜10...安全　11〜20...危険　20〜...非常に危険
                 </p>
               </div>
 
-              <h4 className="text-md font-bold mb-2">週間天気予報</h4>
+              <h4 className="text-xl font-bold mb-2">週間天気予報</h4>
               <ul>
                 {weatherData?.daily.map((date, index) => (
                   <DailyWeather date={date} key={index} />

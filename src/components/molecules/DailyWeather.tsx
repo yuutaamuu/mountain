@@ -26,23 +26,25 @@ export const DailyWeather: VFC<PROPS> = memo((props) => {
     <>
       <li className="flex mb-1 border-b">
         <div className="flex items-center">
-          <span className="block w-8">{changeDate(date.dt)}</span>
+          <span className="block w-8 text-md">{changeDate(date.dt)}</span>
           <img
             className="w-8 h-8 ml-4"
             src={
-              "http://openweathermap.org/img/w/" + date.weather[0].icon + ".png"
+              "http://openweathermap.org/img/wn/" +
+              date.weather[0].icon +
+              "@2x.png"
             }
             alt=""
           />
         </div>
         <p className="ml-auto flex items-center text-right">
-          <span className="text-red-400 text-sm mr-4 w-12 block">
+          <span className="text-red-400 text-lg mr-6 w-14 block text-right">
             {getRound(date.temp.max)}℃
           </span>
-          <span className="text-blue-400 text-sm mr-4 w-12 block">
+          <span className="text-blue-400 text-lg mr-6 w-14 block text-right">
             {getRound(date.temp.min)}℃
           </span>
-          <span className="text-sm w-10 block">
+          <span className="text-md w-10 block">
             {getRound(date.pop) * 100}%
           </span>
         </p>

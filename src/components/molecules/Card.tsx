@@ -40,9 +40,9 @@ export const Card: VFC<MOUNTAINS> = memo((props) => {
   return (
     <>
       <div className="w-11/12 border mx-auto rounded-xl shadow-2xl my-8 p-8">
-        <div className="flex items-center mb-4">
-          <p className="text-center text-md flex mr-6 font-bold">
-            {/* <span className="font-bold mr-2">今日</span> */}
+        {/* <div className="flex items-center mb-4">
+          <p className="text-center text-xl flex mr-6 font-bold">
+            <span className="font-bold mr-2">今日</span>
             {today}
           </p>
 
@@ -52,7 +52,7 @@ export const Card: VFC<MOUNTAINS> = memo((props) => {
               src="https://source.unsplash.com/random"
               alt=""
             />
-            <div className="text-md flex justify-center">
+            <div className="text-xl flex justify-center">
               <p className="text-red-400 mr-1">
                 20°
                 <span className="text-sm">[-3]</span>
@@ -63,7 +63,7 @@ export const Card: VFC<MOUNTAINS> = memo((props) => {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div>
           <div className="flex items-center mb-1">
