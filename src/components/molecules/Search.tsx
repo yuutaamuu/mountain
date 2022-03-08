@@ -29,7 +29,7 @@ export const Search: VFC<PROPS> = memo((props) => {
 
         <input
           type="text"
-          className="w-full py-3 pl-10 pr-4 text-gray-700 bg-white border rounded-l-md rounded-r-none dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none"
+          className="w-full py-3 pl-10 pr-4 text-gray-700 bg-white border rounded-l-md rounded-r-none focus:border-blue-500 focus:outline-none"
           placeholder="Search"
           value={input}
           onChange={(e) => onChangeSearch(e)}

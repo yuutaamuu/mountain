@@ -45,14 +45,14 @@ export const Modal: VFC<PROP> = memo((props) => {
         className="overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-0 bottom-0 z-50 justify-center items-center h-modal md:h-full md:inset-0 bg-gray-600 bg-opacity-50"
       >
         <div className="relative p-4 w-full max-w-2xl h-full md:h-auto flex items-center">
-          <div className="relative overflow-auto bg-white w-full h-full my-8 rounded-lg shadow dark:bg-gray-700">
-            <div className="flex justify-between items-center p-6 rounded-t border-b dark:border-gray-600">
+          <div className="relative overflow-auto bg-white w-full h-full my-8 rounded-lg shadow">
+            <div className="flex justify-between items-center p-6 rounded-t border-b">
               <h3 className="text-xl font-semibold text-gray-900 lg:text-2xl dark:text-white">
                 {props.singleMountain?.name}
               </h3>
               <button
                 type="button"
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                 data-modal-toggle="defaultModal"
                 onClick={props.onClickCloseModal}
               >
