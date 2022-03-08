@@ -1,5 +1,6 @@
 import React, { memo, useCallback, VFC } from "react";
 import daily from "../../daily.json";
+import { useRound } from "../../hooks/useRound";
 
 type DAILY = typeof daily;
 
@@ -8,18 +9,13 @@ type PROPS = {
 };
 
 export const DailyWeather: VFC<PROPS> = memo((props) => {
+  const { getRoundNum } = useRound();
   const { date } = props;
 
   const changeDate = useCallback((num: number) => {
     let dateDaily = new Date(num * 1000);
     let day = dateDaily.toLocaleDateString("ja-JP").slice(5);
     return day;
-  }, []);
-
-  const getRound = useCallback((num: number) => {
-    let n = 1;
-    let roundDegree = Math.round(num * Math.pow(10, n)) / Math.pow(10, n);
-    return roundDegree;
   }, []);
 
   return (
@@ -38,14 +34,16 @@ export const DailyWeather: VFC<PROPS> = memo((props) => {
           />
         </div>
         <p className="ml-auto flex items-center text-right">
-          <span className="text-red-400 text-lg mr-6 w-14 block text-right">
-            {getRound(date.temp.max)}℃
+          <span className="text-red-400 text-lg mr-4 w-14 block text-right">
+            {getRoundNum(date.temp.max)}
+            <span className="text-sm">℃</span>
           </span>
-          <span className="text-blue-400 text-lg mr-6 w-14 block text-right">
-            {getRound(date.temp.min)}℃
+          <span className="text-blue-400 text-lg mr-4 w-14 block text-right">
+            {getRoundNum(date.temp.min)}
+            <span className="text-sm">℃</span>
           </span>
           <span className="text-md w-10 block">
-            {getRound(date.pop) * 100}%
+            {getRoundNum(date.pop) * 100}%
           </span>
         </p>
         {/* {date.weather[0].icon} */}

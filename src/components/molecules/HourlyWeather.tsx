@@ -1,4 +1,5 @@
 import React, { memo, useCallback, VFC } from "react";
+import { useRound } from "../../hooks/useRound";
 import hourly from "../../hourly.json";
 
 type HOURLY = typeof hourly;
@@ -9,12 +10,13 @@ type PROPS = {
 
 export const HourlyWeather: VFC<PROPS> = memo((props) => {
   const { hour } = props;
+  const { getRoundNum } = useRound();
 
-  const getRound = useCallback((num: number) => {
-    let n = 1;
-    let roundDegree = Math.round(num * Math.pow(10, n)) / Math.pow(10, n);
-    return roundDegree;
-  }, []);
+  // const getRound = useCallback((num: number) => {
+  //   let n = 1;
+  //   let roundDegree = Math.round(num * Math.pow(10, n)) / Math.pow(10, n);
+  //   return roundDegree;
+  // }, []);
 
   const getHour = useCallback((num: number) => {
     let dateHourly = new Date(num * 1000);
@@ -38,10 +40,10 @@ export const HourlyWeather: VFC<PROPS> = memo((props) => {
           alt=""
         />
         <p className="h-6">
-          {getRound(hour.temp)}
+          {getRoundNum(hour.temp)}
           <span className="text-sm">℃</span>
         </p>
-        <p className="h-6">{getRound(hour.wind_speed)}</p>
+        <p className="h-6">{getRoundNum(hour.wind_speed)}</p>
       </li>
     </>
   );

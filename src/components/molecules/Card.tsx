@@ -33,6 +33,11 @@ export const Card: VFC<MOUNTAINS> = memo((props) => {
     setToday(todayDate);
   }, []);
 
+  const getArray = useCallback((arr: string[]) => {
+    let str = arr.join(", ");
+    return str;
+  }, []);
+
   useEffect(() => {
     getToday();
   }, []);
@@ -40,31 +45,6 @@ export const Card: VFC<MOUNTAINS> = memo((props) => {
   return (
     <>
       <div className="w-11/12 border mx-auto rounded-xl shadow-2xl my-8 p-8">
-        {/* <div className="flex items-center mb-4">
-          <p className="text-center text-xl flex mr-6 font-bold">
-            <span className="font-bold mr-2">今日</span>
-            {today}
-          </p>
-
-          <div className="flex items-center ml-auto">
-            <img
-              className="w-8 h-8 rounded-full mr-2"
-              src="https://source.unsplash.com/random"
-              alt=""
-            />
-            <div className="text-xl flex justify-center">
-              <p className="text-red-400 mr-1">
-                20°
-                <span className="text-sm">[-3]</span>
-              </p>
-              <p className="text-blue-400 ml-1">
-                10°
-                <span className="text-sm">[-2]</span>
-              </p>
-            </div>
-          </div>
-        </div> */}
-
         <div>
           <div className="flex items-center mb-1">
             <svg
@@ -77,7 +57,9 @@ export const Card: VFC<MOUNTAINS> = memo((props) => {
               <path d="M0 0h24v24H0V0z" fill="none" />
               <path d="M12 2c3.86 0 7 3.14 7 7 0 5.25-7 13-7 13S5 14.25 5 9c0-3.86 3.14-7 7-7zm-1.53 12L17 7.41 15.6 6l-5.13 5.18L8.4 9.09 7 10.5l3.47 3.5z" />
             </svg>
-            <p className="text-gray-500 text-sm">{mountain.prefectures}</p>
+            <p className="text-gray-500 text-sm">
+              {getArray(mountain.prefectures)}
+            </p>
           </div>
 
           <div className="flex items-end justify-between mb-4">

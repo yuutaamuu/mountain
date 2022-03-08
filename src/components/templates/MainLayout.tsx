@@ -11,7 +11,7 @@ export const MainLayout: React.VFC<PROPS> = memo(({ children }) => {
     <>
       <Header />
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 });

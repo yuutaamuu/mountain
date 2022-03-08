@@ -29,6 +29,7 @@ export const Data = memo(() => {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState(0);
   const [input, setInput] = useState("");
+  const [searchResult, setSearchResult] = useState<MOUNTAIN[]>([]);
   const { singleMountain, getMountainData } = useModalData(0);
 
   const getMountainDatas = useCallback(async () => {
@@ -40,11 +41,11 @@ export const Data = memo(() => {
 
   const onClickGetSingleData = useCallback((id: number) => {
     getMountainData(id);
-    setOpen(!open);
+    setOpen(true);
   }, []);
 
   const onClickCloseModal = useCallback(() => {
-    setOpen(!open);
+    setOpen(false);
   }, []);
 
   const onChangeSearch = useCallback(
@@ -54,17 +55,36 @@ export const Data = memo(() => {
     []
   );
 
-  console.log(input);
+  const getSortData = () => {
+    const fil = mountains.filter((mountain) => mountain.name.includes(input));
+    setSearchResult(fil);
+  };
+
+  const onClickSearch = () => {
+    setSearchResult([]);
+    getSortData();
+    setInput("");
+  };
 
   useEffect(() => {
     getMountainDatas();
   }, []);
 
+  console.log(searchResult);
+
   return (
     <div>
-      <Search onChangeSearch={onChangeSearch} input={input} />
+      <div className="flex items-center">
+        <Search onChangeSearch={onChangeSearch} input={input} />
+        <button
+          className="cursor bg-blue-500 border border-blue-500 box-content text-sm hover:bg-blue-700 text-white font-bold px-4 mr-5 rounded-l-none rounded-r-md w-20 h-12"
+          onClick={onClickSearch}
+        >
+          表示
+        </button>
+      </div>
       <div>
-        {mountains.map((mountain) => (
+        {searchResult.map((mountain) => (
           <Card
             key={mountain.id}
             mountain={mountain}
@@ -72,6 +92,14 @@ export const Data = memo(() => {
             onClickGetSingleData={onClickGetSingleData}
           />
         ))}
+        {/* {mountains.map((mountain) => (
+          <Card
+            key={mountain.id}
+            mountain={mountain}
+            id={mountain.id}
+            onClickGetSingleData={onClickGetSingleData}
+          />
+        ))} */}
       </div>
 
       {open && (
