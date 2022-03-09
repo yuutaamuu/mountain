@@ -3,11 +3,12 @@ import React, { memo, useState, VFC } from "react";
 type PROPS = {
   input: string;
   onChangeSearch: (text: React.ChangeEvent<HTMLInputElement>) => void;
+  onClickSearch: () => void;
 };
 
 export const Search: VFC<PROPS> = memo((props) => {
   //   const [text, setText] = useState("");
-  const { onChangeSearch, input } = props;
+  const { onChangeSearch, onClickSearch, input } = props;
   return (
     <section className="relative w-full max-w-md pl-5 py-4 mx-auto rounded-l-md rounded-r-none">
       <div className="relative">
@@ -29,10 +30,17 @@ export const Search: VFC<PROPS> = memo((props) => {
 
         <input
           type="text"
+          inputMode="search"
           className="w-full py-3 pl-10 pr-4 text-gray-700 bg-white border rounded-l-md rounded-r-none focus:border-blue-500 focus:outline-none"
-          placeholder="Search"
+          placeholder="山の名前を入力"
           value={input}
           onChange={(e) => onChangeSearch(e)}
+          onKeyPress={(e) => {
+            if (e.key == "Enter") {
+              e.preventDefault();
+              onClickSearch();
+            }
+          }}
         />
       </div>
       {/* 

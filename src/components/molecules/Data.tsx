@@ -77,7 +77,11 @@ export const Data = memo(() => {
   return (
     <div className="relative">
       <div className="flex items-center">
-        <Search onChangeSearch={onChangeSearch} input={input} />
+        <Search
+          onChangeSearch={onChangeSearch}
+          onClickSearch={onClickSearch}
+          input={input}
+        />
         <button
           className="cursor bg-blue-500 border border-blue-500 box-content text-sm hover:bg-blue-700 text-white font-bold px-4 mr-5 rounded-l-none rounded-r-md w-20 h-12"
           onClick={onClickSearch}
