@@ -47,7 +47,7 @@ export const Modal: VFC<PROP> = memo((props) => {
         <div className="relative p-4 w-full max-w-2xl h-full md:h-auto flex items-center">
           <div className="relative overflow-auto bg-white w-full h-full my-8 rounded-lg shadow">
             <div className="flex justify-between items-center p-6 rounded-t border-b">
-              <h3 className="text-xl font-semibold text-gray-900 lg:text-2xl dark:text-white">
+              <h3 className="text-xl font-semibold text-gray-900 lg:text-2xl">
                 {props.singleMountain?.name}
               </h3>
               <button

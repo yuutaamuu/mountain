@@ -29,6 +29,7 @@ export const Data = memo(() => {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState(0);
   const [input, setInput] = useState("");
+  const [dataShow, setDataShow] = useState(false);
   const [searchResult, setSearchResult] = useState<MOUNTAIN[]>([]);
   const { singleMountain, getMountainData } = useModalData(0);
 
@@ -64,6 +65,7 @@ export const Data = memo(() => {
     setSearchResult([]);
     getSortData();
     setInput("");
+    setDataShow(true);
   };
 
   useEffect(() => {
@@ -73,7 +75,7 @@ export const Data = memo(() => {
   console.log(searchResult);
 
   return (
-    <div>
+    <div className="relative">
       <div className="flex items-center">
         <Search onChangeSearch={onChangeSearch} input={input} />
         <button
@@ -84,14 +86,15 @@ export const Data = memo(() => {
         </button>
       </div>
       <div>
-        {searchResult.map((mountain) => (
-          <Card
-            key={mountain.id}
-            mountain={mountain}
-            id={mountain.id}
-            onClickGetSingleData={onClickGetSingleData}
-          />
-        ))}
+        {dataShow &&
+          searchResult.map((mountain) => (
+            <Card
+              key={mountain.id}
+              mountain={mountain}
+              id={mountain.id}
+              onClickGetSingleData={onClickGetSingleData}
+            />
+          ))}
         {/* {mountains.map((mountain) => (
           <Card
             key={mountain.id}
@@ -101,6 +104,16 @@ export const Data = memo(() => {
           />
         ))} */}
       </div>
+
+      {!dataShow && (
+        <div className="h-screen w-screen flex justify-center items-center -mt-24">
+          <img
+            className="w-11/12"
+            src="https://yu-tam.com/wp-content/uploads/2021/10/IMG_4332.jpg"
+            alt=""
+          />
+        </div>
+      )}
 
       {open && (
         <Modal
