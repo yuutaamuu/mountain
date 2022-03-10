@@ -20,7 +20,7 @@ export const DailyWeather: VFC<PROPS> = memo((props) => {
 
   return (
     <>
-      <li className="flex mb-1 border-b">
+      <li className="flex mb-1 border-b lg:px-2">
         <div className="flex items-center">
           <span className="block w-8 text-md">{changeDate(date.dt)}</span>
           <img

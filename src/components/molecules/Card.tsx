@@ -44,7 +44,7 @@ export const Card: VFC<MOUNTAINS> = memo((props) => {
 
   return (
     <>
-      <div className="w-11/12 border mx-auto rounded-xl shadow-2xl my-8 p-8">
+      <div className="w-11/12 border mx-auto rounded-xl shadow-2xl my-8 p-8 md:w-1/3 md:mx-16">
         <div>
           <div className="flex items-center mb-1">
             <svg

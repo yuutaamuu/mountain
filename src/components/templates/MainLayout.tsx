@@ -9,7 +9,7 @@ type PROPS = {
 export const MainLayout: React.VFC<PROPS> = memo(({ children }) => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {children}
       {/* <Footer /> */}
     </>

@@ -10,7 +10,7 @@ export const Search: VFC<PROPS> = memo((props) => {
   //   const [text, setText] = useState("");
   const { onChangeSearch, onClickSearch, input } = props;
   return (
-    <section className="relative w-full max-w-md pl-5 py-4 mx-auto rounded-l-md rounded-r-none">
+    <section className="relative w-5/6 py-4 rounded-l-md rounded-r-none">
       <div className="relative">
         <span className="absolute inset-y-0 left-0 flex items-center pl-3">
           <svg
@@ -30,7 +30,7 @@ export const Search: VFC<PROPS> = memo((props) => {
 
         <input
           type="text"
-          inputMode="search"
+          inputMode="text"
           className="w-full py-3 pl-10 pr-4 text-gray-700 bg-white border rounded-l-md rounded-r-none focus:border-blue-500 focus:outline-none"
           placeholder="山の名前を入力"
           value={input}

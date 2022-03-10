@@ -75,21 +75,21 @@ export const Data = memo(() => {
   console.log(searchResult);
 
   return (
-    <div className="relative">
-      <div className="flex items-center">
+    <div>
+      <div className="flex items-center justify-center w-11/12 md:w-1/2 mx-auto">
         <Search
           onChangeSearch={onChangeSearch}
           onClickSearch={onClickSearch}
           input={input}
         />
         <button
-          className="cursor bg-blue-500 border border-blue-500 box-content text-sm hover:bg-blue-700 text-white font-bold px-4 mr-5 rounded-l-none rounded-r-md w-20 h-12"
+          className="cursor bg-blue-500 border border-blue-500 box-content text-sm hover:bg-blue-700 text-white font-bold px-4  rounded-l-none rounded-r-md w-1/6 h-12"
           onClick={onClickSearch}
         >
           表示
         </button>
       </div>
-      <div>
+      <div className="md:flex md:flex-wrap md:w-full md:mx-auto md:justify-between">
         {dataShow &&
           searchResult.map((mountain) => (
             <Card
@@ -112,7 +112,7 @@ export const Data = memo(() => {
       {!dataShow && (
         <div className="h-screen w-screen flex justify-center items-center -mt-24">
           <img
-            className="w-11/12"
+            className="w-11/12 md:w-1/2"
             src="https://yu-tam.com/wp-content/uploads/2021/10/IMG_4332.jpg"
             alt=""
           />
