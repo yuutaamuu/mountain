@@ -31,7 +31,7 @@ export const Data = memo(() => {
   const [input, setInput] = useState("");
   const [dataShow, setDataShow] = useState(false);
   const [searchResult, setSearchResult] = useState<MOUNTAIN[]>([]);
-  const { singleMountain, getMountainData } = useModalData(0);
+  const { singleMountain, loading, getMountainData } = useModalData(0);
 
   const getMountainDatas = useCallback(async () => {
     await axios
@@ -113,7 +113,7 @@ export const Data = memo(() => {
         <div className="h-screen w-screen flex justify-center items-center -mt-24">
           <img
             className="w-11/12 md:w-1/2"
-            src="https://yu-tam.com/wp-content/uploads/2021/10/IMG_4332.jpg"
+            src="https://yu-tam.com/wp-content/uploads/2022/03/red-mountain-1.png"
             alt=""
           />
         </div>
@@ -123,6 +123,7 @@ export const Data = memo(() => {
         <Modal
           singleMountain={singleMountain}
           onClickCloseModal={onClickCloseModal}
+          loading={loading}
         />
       )}
     </div>

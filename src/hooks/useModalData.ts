@@ -20,18 +20,23 @@ type getData = (id: number) => void;
 
 type UseCount = {
   singleMountain: MOUNTAIN | undefined;
+  loading: boolean;
   getMountainData: getData;
 };
 
 export const useModalData = (id: number): UseCount => {
   const [singleMountain, setSingleMountain] = useState<MOUNTAIN>();
+  const [loading, setLoading] = useState(true);
 
   const getMountainData = useCallback(async (id: number) => {
     await axios
       .get<MOUNTAIN>(`https://mountix.codemountains.org/api/v1/mountains/${id}`)
-      .then((res) => setSingleMountain(res.data))
+      .then((res) => {
+        setSingleMountain(res.data);
+      })
       .catch((err) => console.log(err));
+    setLoading(false);
   }, []);
 
-  return { singleMountain, getMountainData };
+  return { singleMountain, loading, getMountainData };
 };

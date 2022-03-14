@@ -21,11 +21,12 @@ type PROPS = {
 
 type PROP = {
   singleMountain: PROPS | undefined;
+  loading: boolean;
   onClickCloseModal: () => void;
 };
 
 export const Modal: VFC<PROP> = memo((props) => {
-  const { weatherData, setWeatherData, getWeatherData } = useWeatherData();
+  const { weatherData, getWeatherData } = useWeatherData();
 
   let lat = props.singleMountain?.location.latitude;
   let lon = props.singleMountain?.location.longitude;
@@ -73,11 +74,18 @@ export const Modal: VFC<PROP> = memo((props) => {
 
             <div className="px-5 py-6 overflow-auto w-full">
               <h4 className="text-xl font-bold mb-2">現在の天気</h4>
-              <TodayWeather
-                todayTemp={weatherData?.current.temp}
-                todayIcon={weatherData?.current.weather[0].icon}
-                todayHumi={weatherData?.current.humidity}
-              />
+              {props.loading ? (
+                <div className="flex justify-center">
+                  <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div>
+                </div>
+              ) : (
+                <TodayWeather
+                  todayTemp={weatherData?.current.temp}
+                  todayIcon={weatherData?.current.weather[0].icon}
+                  todayHumi={weatherData?.current.humidity}
+                />
+              )}
+
               <h4 className="text-xl font-bold mb-2">48時間予報</h4>
               <div className="flex mb-2">
                 <div className="w-20 pr-2 bg-white flex flex-col items-center text-center">

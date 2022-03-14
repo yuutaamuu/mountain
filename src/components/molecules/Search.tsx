@@ -1,4 +1,4 @@
-import React, { memo, useState, VFC } from "react";
+import React, { memo, useCallback, useState, VFC } from "react";
 
 type PROPS = {
   input: string;
@@ -9,6 +9,13 @@ type PROPS = {
 export const Search: VFC<PROPS> = memo((props) => {
   //   const [text, setText] = useState("");
   const { onChangeSearch, onClickSearch, input } = props;
+  const blurEvent = useCallback(() => {
+    const el = document.querySelector(".inputSearch") as HTMLInputElement;
+    if (el) {
+      el.blur();
+    }
+  }, []);
+
   return (
     <section className="relative w-5/6 py-4 rounded-l-md rounded-r-none">
       <div className="relative">
@@ -30,8 +37,8 @@ export const Search: VFC<PROPS> = memo((props) => {
 
         <input
           type="text"
-          inputMode="text"
-          className="w-full py-3 pl-10 pr-4 text-gray-700 bg-white border rounded-l-md rounded-r-none focus:border-blue-500 focus:outline-none"
+          enterKeyHint="search"
+          className="inputSearch w-full py-3 pl-10 pr-4 text-gray-700 bg-white border rounded-l-md rounded-r-none focus:border-blue-500 focus:outline-none"
           placeholder="山の名前を入力"
           value={input}
           onChange={(e) => onChangeSearch(e)}
@@ -39,6 +46,7 @@ export const Search: VFC<PROPS> = memo((props) => {
             if (e.key == "Enter") {
               e.preventDefault();
               onClickSearch();
+              blurEvent();
             }
           }}
         />
